@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header></Header>
+        <Header @search="search"></Header>
 
         <div class="container">
             <div class="row">
@@ -42,6 +42,11 @@ import FakeData from "../FakeData/FakeData";
             },
             removeCart(index){
                 this.cart.splice(index, 1)
+            },
+            search(keyword){
+                this.items = FakeData.filter(item => {
+                    return item.title.toLowerCase().indexOf(keyword.trim().toLowerCase()) !== -1 
+                })
             }
         },
         mounted(){
